@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maksym Koshel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #333;
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 20px auto;
+            object-fit: cover;
+            border: 5px solid #007bff;
+        }
+        .buttons {
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .buttons button:hover {
+            background: #0056b3;
+        }
+        .resume {
+            margin-top: 20px;
+        }
+        .resume a {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .resume a:hover {
+            background: #218838;
+        }
+        .content {
+            display: none;
+            margin-top: 20px;
+        }
+        .content.active {
+            display: block;
+        }
+        .hobby-card {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .hobby-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+        .hobby-card h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .hobby-card p {
+            margin: 10px 0 0;
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        .resume-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .contact {
+            margin-top: 30px;
+        }
+        .contact h2 {
+            font-size: 2em;
+            color: #333;
+        }
+        .contact p {
+            font-size: 1.2em;
+            color: #555;
+            margin: 10px 0;
+        }
+        .ambitions {
+            margin-top: 30px;
+        }
+        .ambitions h2 {
+            font-size: 2em;
+            color: #333;
+            cursor: pointer;
+            user-select: none;
+        }
+        .ambitions-content {
+            display: none;
+            margin-top: 10px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .buttons button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            .resume a {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            .hobby-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hobby-card img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Ваше фото -->
+        <img class="profile-image" src="your-photo.jpg" alt="Maksym Koshel">
+
+        <h1 id="name">Максим Кошель</h1>
+        <div class="buttons">
+            <button onclick="changeLanguage('ru')">Русский</button>
+            <button onclick="changeLanguage('en')">English</button>
+            <button onclick="changeLanguage('nl')">Nederlands</button>
+            <button onclick="changeLanguage('uk')">Українська</button>
+        </div>
+        <div class="resume">
+            <a href="resume.pdf" download id="download">Скачать резюме</a>
+        </div>
+
+        <!-- Секции для разных языков -->
+        <div id="ru" class="content active">
+            <h2>Мои хобби:</h2>
+            <div class="hobby-card">
+                <img src="boxing.jpg" alt="Бокс">
+                <div>
+                    <h3>Бокс</h3>
+                    <p>Бокс — это не только физическая подготовка, но и развитие стратегического мышления. Я занимаюсь боксом уже 5 лет, и это помогает мне оставаться в форме и дисциплинированным.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="chess.jpg" alt="Шахматы">
+                <div>
+                    <h3>Шахматы</h3>
+                    <p>Шахматы — это игра, которая развивает логическое мышление и концентрацию. Я участвую в местных турнирах и постоянно совершенствую свои навыки.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="swimming.jpg" alt="Плавание">
+                <div>
+                    <h3>Плавание</h3>
+                    <p>Плавание — отличный способ расслабиться и поддерживать физическую форму. Я плаваю 3 раза в неделю, что помогает мне оставаться энергичным и здоровым.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="hiking.jpg" alt="Походы">
+                <div>
+                    <h3>Походы</h3>
+                    <p>Походы позволяют мне исследовать природу и наслаждаться свежим воздухом. Я регулярно выхожу в походы, чтобы поддерживать связь с природой и сохранять физическую активность.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="books.jpg" alt="Чтение">
+                <div>
+                    <h3>Чтение</h3>
+                    <p>Чтение помогает мне расширять кругозор и получать новые знания. Я люблю читать книги по истории, философии и художественной литературе.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="en" class="content">
+            <h2>My Hobbies:</h2>
+            <div class="hobby-card">
+                <img src="boxing.jpg" alt="Boxing">
+                <div>
+                    <h3>Boxing</h3>
+                    <p>Boxing is not only about physical fitness but also about developing strategic thinking. I have been practicing boxing for 5 years, and it helps me stay in shape and disciplined.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="chess.jpg" alt="Chess">
+                <div>
+                    <h3>Chess</h3>
+                    <p>Chess is a game that develops logical thinking and concentration. I participate in local tournaments and constantly improve my skills.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="swimming.jpg" alt="Swimming">
+                <div>
+                    <h3>Swimming</h3>
+                    <p>Swimming is a great way to relax and maintain physical fitness. I swim 3 times a week, which helps me stay energetic and healthy.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="hiking.jpg" alt="Hiking">
+                <div>
+                    <h3>Hiking</h3>
+                    <p>Hiking allows me to explore nature and enjoy the fresh air. I regularly go on hikes to stay connected with nature and maintain physical activity.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="books.jpg" alt="Reading">
+                <div>
+                    <h3>Reading</h3>
+                    <p>Reading helps me expand my horizons and acquire new knowledge. I enjoy reading books on history, philosophy, and fiction.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="nl" class="content">
+            <h2>Mijn hobby's:</h2>
+            <div class="hobby-card">
+                <img src="boxing.jpg" alt="Boksen">
+                <div>
+                    <h3>Boksen</h3>
+                    <p>Boksen is niet alleen goed voor de lichamelijke conditie, maar ook voor het ontwikkelen van strategisch denken. Ik beoefen boksen al 5 jaar en het helpt me fit en gedisciplineerd te blijven.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="chess.jpg" alt="Schaken">
+                <div>
+                    <h3>Schaken</h3>
+                    <p>Schaken is een spel dat logisch denken en concentratie ontwikkelt. Ik neem deel aan lokale toernooien en verbeter constant mijn vaardigheden.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="swimming.jpg" alt="Zwemmen">
+                <div>
+                    <h3>Zwemmen</h3>
+                    <p>Zwemmen is een geweldige manier om te ontspannen en fit te blijven. Ik zwem 3 keer per week, wat me helpt energiek en gezond te blijven.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="hiking.jpg" alt="Wandelen">
+                <div>
+                    <h3>Wandelen</h3>
+                    <p>Wandelen stelt me in staat om de natuur te verkennen en te genieten van de frisse lucht. Ik ga regelmatig wandelen om verbonden te blijven met de natuur en lichamelijk actief te blijven.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="books.jpg" alt="Lezen">
+                <div>
+                    <h3>Lezen</h3>
+                    <p>Lezen helpt me mijn horizon te verbreden en nieuwe kennis op te doen. Ik lees graag boeken over geschiedenis, filosofie en fictie.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="uk" class="content">
+            <h2>Мої хобі:</h2>
+            <div class="hobby-card">
+                <img src="boxing.jpg" alt="Бокс">
+                <div>
+                    <h3>Бокс</h3>
+                    <p>Бокс — це не лише фізична підготовка, але й розвиток стратегічного мислення. Я займаюся боксом вже 5 років, і це допомагає мені залишатися у формі та дисциплінованим.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="chess.jpg" alt="Шахи">
+                <div>
+                    <h3>Шахи</h3>
+                    <p>Шахи — це гра, яка розвиває логічне мислення та концентрацію. Я беру участь у місцевих турнірах і постійно вдосконалюю свої навички.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="swimming.jpg" alt="Плавання">
+                <div>
+                    <h3>Плавання</h3>
+                    <p>Плавання — це чудовий спосіб розслабитися і підтримувати фізичну форму. Я плаваю 3 рази на тиждень, що допомагає мені залишатися енергійним і здоровим.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="hiking.jpg" alt="Похід">
+                <div>
+                    <h3>Похід</h3>
+                    <p>Похід дозволяє мені досліджувати природу та насолоджуватися свіжим повітрям. Я регулярно виходжу в походи, щоб підтримувати зв'язок з природою та зберігати фізичну активність.</p>
+                </div>
+            </div>
+            <div class="hobby-card">
+                <img src="books.jpg" alt="Читання">
+                <div>
+                    <h3>Читання</h3>
+                    <p>Читання допомагає мені розширювати кругозір і отримувати нові знання. Я люблю читати книги з історії, філософії та художньої літератури.</п>
+                </div>
+            </div>
+        </div>
+
+        <!-- Фото резюме -->
+        <img class="resume" src="resume.png" alt="Фото резюме Максима Кошеля">
+
+        <!-- Контактная информация -->
+        <div class="contact">
+            <h2>Связаться со мной</h2>
+            <p>Email: <a href="pohanpoh0@gmail.com">pohanpoh0@gmail.com</a></p>
+            <p>Телефон: +31629163288</p>
+            <p>LinkedIn: <a href="www.linkedin.com/in/максим-кошель-44a40a335" target="_blank">www.linkedin.com/in/максим-кошель-44a40a335</a></p>
+        </div>
+
+        <!-- Амбиции и желания -->
+        <div class="ambitions">
+            <h2 onclick="toggleAmbitions()">Амбиции и желания prees me </h2>
+            <div id="ambitions-content" class="ambitions-content">
+                <p>Моя главная амбиция - стать экспертом в области программирования и внести значительный вклад в развитие технологий. Я стремлюсь к постоянному обучению и профессиональному росту, чтобы оставаться в курсе последних тенденций и инноваций. Мои желания включают в себя создание успешных проектов, которые могут изменить мир к лучшему, а также участие в международных конференциях и семинарах, чтобы делиться своим опытом и знаниями с другими.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeLanguage(lang) {
+            // Скрыть все секции
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+
+            // Показать выбранную секцию
+            let selectedContent = document.getElementById(lang);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+
+            // Обновить имя и текст ссылки для скачивания
+            let nameMapping = {
+                'ru': 'Максим Кошель',
+                'en': 'Maksym Koshel',
+                'nl': 'Maksym Koshel',
+                'uk': 'Максим Кошель'
+            };
+            document.getElementById('name').innerText = nameMapping[lang] || 'Maksym Koshel';
+
+            let downloadMapping = {
+                'ru': 'Скачать резюме',
+                'en': 'Download Resume',
+                'nl': 'Download CV',
+                'uk': 'Завантажити резюме'
+            };
+            document.getElementById('download').innerText = downloadMapping[lang] || 'Download Resume';
+
+            // Обновить заголовок страницы
+            let titleMapping = {
+                'ru': 'Максим Кошель',
+                'en': 'Maksym Koshel',
+                'nl': 'Maksym Koshel',
+                'uk': 'Максим Кошель'
+            };
+            document.title = titleMapping[lang] || 'Maksym Koshel';
+        }
+
+        function toggleAmbitions() {
+            let content = document.getElementById('ambitions-content');
+            content.style.display = content.style.display === 'none' || content.style.display === '' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
